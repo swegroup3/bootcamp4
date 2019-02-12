@@ -43,20 +43,59 @@ exports.update = function(req, res) {
   /** TODO **/
   /* Replace the article's properties with the new properties found in req.body */
   /* Save the article */
+  
+  listing.name = req.body.name;
+  listing.code = req.body.code;
+  listing.address = req.body.address;
+  listing.save(function(err, list){
+	  if (err) {
+		  console.log(err);
+		  res.status(400).send(err);
+	  }
+	  else{
+		  res.json(list);
+	  }
+  });
+  /*
+  console.log(req.body);
+  Listing.findOneAndUpdate({name: listing.name}, 
+  {
+	  $set: {name: req.body.name, code: req.body.code, address: req.body.address}
+  }, 
+  {new: false}, function(err, list){
+	if(err) {
+	console.log(err);
+	res.status(400).send(err);
+	} else {
+		console.log(list);
+		res.json(list);
+	}
+  });*/
 };
 
 /* Delete a listing */
 exports.delete = function(req, res) {
   var listing = req.listing;
 
-  /** TODO **/
-  /* Remove the article */
+  Listing.findOneAndRemove({name: listing.name}, function(err, list){
+if(err) {
+	console.log(err);
+	res.status(400).send(err);
+	} else {
+		res.json(list);
+	}  });
 };
 
 /* Retreive all the directory listings, sorted alphabetically by listing code */
 exports.list = function(req, res) {
   /** TODO **/
-  /* Your code here */
+  Listing.find({}, [],{sort: 'code'} ,function(err, list){
+if(err) {
+	console.log(err);
+	res.status(400).send(err);
+	} else {
+		res.json(list);
+	}  });
 };
 
 /* 
