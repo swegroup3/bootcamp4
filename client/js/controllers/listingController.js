@@ -9,6 +9,7 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
 
     $scope.detailedInfo = undefined;
 
+    /* function to add listing */
     $scope.addListing = function() {	
 	 Listings.create($scope.newListing).then(function(response){
 		 $scope.listings.push($scope.newListing);
@@ -18,6 +19,7 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
 
     };
 
+    /* fucntion to delete listing */
     $scope.deleteListing = function(id) {
 	   
 	  Listings.delete(id).then(function(response){
@@ -30,6 +32,7 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
 	
     };
 
+    /* function to show details */
     $scope.showDetails = function(index) {
       $scope.detailedInfo = $scope.listings[index];
     };
