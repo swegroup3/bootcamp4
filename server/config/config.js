@@ -4,7 +4,7 @@
 
 module.exports = {
   db: {
-    uri: 'mongodb://test:m5MbCN4GGW7eJzZ@ds121135.mlab.com:21135/bootcamp3mongotestscs'
+    uri: 'mongodb://rantsdev:hUk8nf63lMi0@ds153495.mlab.com:53495/bodegadev'
   },
   port:8080
 };
